@@ -108,7 +108,8 @@ export interface Config {
   db: {
     defaultIDType: string;
   };
-  fallbackLocale: null;
+  fallbackLocale:
+    ('false' | 'none' | 'null') | false | null | ('en' | 'fr' | 'es' | 'pt') | ('en' | 'fr' | 'es' | 'pt')[];
   globals: {
     header: Header;
     footer: Footer;
@@ -117,7 +118,7 @@ export interface Config {
     header: HeaderSelect<false> | HeaderSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
   };
-  locale: null;
+  locale: 'en' | 'fr' | 'es' | 'pt';
   widgets: {
     collections: CollectionsWidget;
   };
@@ -1632,7 +1633,12 @@ export interface Header {
   id: string;
   navItems?:
     | {
-        link: {
+        /**
+         * Choose whether this item is a direct link or contains dropdown sub-items or both.
+         */
+        type?: ('link' | 'group' | 'grouplink') | null;
+        title?: string | null;
+        link?: {
           type?: ('reference' | 'custom') | null;
           newTab?: boolean | null;
           reference?:
@@ -1647,6 +1653,48 @@ export interface Header {
           url?: string | null;
           label: string;
         };
+        subNavItems?:
+          | {
+              type?: ('link' | 'group' | 'grouplink') | null;
+              title?: string | null;
+              link?: {
+                type?: ('reference' | 'custom') | null;
+                newTab?: boolean | null;
+                reference?:
+                  | ({
+                      relationTo: 'pages';
+                      value: string | Page;
+                    } | null)
+                  | ({
+                      relationTo: 'posts';
+                      value: string | Post;
+                    } | null);
+                url?: string | null;
+                label: string;
+              };
+              subSubNavItems?:
+                | {
+                    link: {
+                      type?: ('reference' | 'custom') | null;
+                      newTab?: boolean | null;
+                      reference?:
+                        | ({
+                            relationTo: 'pages';
+                            value: string | Page;
+                          } | null)
+                        | ({
+                            relationTo: 'posts';
+                            value: string | Post;
+                          } | null);
+                      url?: string | null;
+                      label: string;
+                    };
+                    id?: string | null;
+                  }[]
+                | null;
+              id?: string | null;
+            }[]
+          | null;
         id?: string | null;
       }[]
     | null;
@@ -1690,6 +1738,8 @@ export interface HeaderSelect<T extends boolean = true> {
   navItems?:
     | T
     | {
+        type?: T;
+        title?: T;
         link?:
           | T
           | {
@@ -1698,6 +1748,36 @@ export interface HeaderSelect<T extends boolean = true> {
               reference?: T;
               url?: T;
               label?: T;
+            };
+        subNavItems?:
+          | T
+          | {
+              type?: T;
+              title?: T;
+              link?:
+                | T
+                | {
+                    type?: T;
+                    newTab?: T;
+                    reference?: T;
+                    url?: T;
+                    label?: T;
+                  };
+              subSubNavItems?:
+                | T
+                | {
+                    link?:
+                      | T
+                      | {
+                          type?: T;
+                          newTab?: T;
+                          reference?: T;
+                          url?: T;
+                          label?: T;
+                        };
+                    id?: T;
+                  };
+              id?: T;
             };
         id?: T;
       };
