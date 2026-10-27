@@ -1,4 +1,8 @@
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
+import { en } from '@payloadcms/translations/languages/en'
+import { fr } from '@payloadcms/translations/languages/fr'
+import { es } from '@payloadcms/translations/languages/es'
+import { pt } from '@payloadcms/translations/languages/pt'
 import sharp from 'sharp'
 import path from 'path'
 import { buildConfig, PayloadRequest } from 'payload'
@@ -17,6 +21,11 @@ import { getServerSideURL } from './utilities/getURL'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
+const locales = process.env.NEXT_PUBLIC_LOCALES
+  ? JSON.parse(process.env.NEXT_PUBLIC_LOCALES)
+  : [{ label: 'English', code: 'en' }]
+
+const defaultLocale = process.env.NEXT_PUBLIC_DEFAULT_LOCALE || 'en'
 
 export default buildConfig({
   admin: {
@@ -60,6 +69,11 @@ export default buildConfig({
   db: mongooseAdapter({
     url: process.env.DATABASE_URL || '',
   }),
+  localization: {
+    locales: locales, // Payload accepts the full array of objects or just codes depending on your version
+    defaultLocale: defaultLocale,
+    fallback: true,
+  },
   collections: [Pages, Posts, Media, Categories, Users],
   cors: [getServerSideURL()].filter(Boolean),
   globals: [Header, Footer],
@@ -68,6 +82,9 @@ export default buildConfig({
   sharp,
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
+  },
+  i18n: {
+    supportedLanguages: {en, fr, es, pt},
   },
   jobs: {
     access: {
