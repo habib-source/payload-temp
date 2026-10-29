@@ -38,6 +38,6 @@ export function proxy(request: NextRequest) {
 export const config = {
   matcher: [
     // Skip internal paths, api routes, static files, etc.
-    '/((?!api|admin|next|_next/static|_next/image|favicon.ico).*)',
+    '/((?!api|admin|next|_next/static|_next/image|favicon.ico|favicon.svg|images).*)',
   ],
 }
