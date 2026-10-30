@@ -13,13 +13,14 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu'
+import { cn } from "@/utilities/ui"
 
 export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
   const navItems = data?.navItems || []
 
   return (
     <nav className="flex items-center gap-4">
-      <NavigationMenu>
+      <NavigationMenu align="end">
         <NavigationMenuList className="gap-1">
           {navItems.map((item, i) => {
             const type = item.type || 'link'
@@ -31,7 +32,7 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
                   <CMSLink
                     {...item.link}
                     appearance="link"
-                    className={navigationMenuTriggerStyle()}
+                    className={cn(navigationMenuTriggerStyle(), "text-black dark:text-white")}
                   />
                 </NavigationMenuItem>
               )
@@ -71,11 +72,11 @@ const MegaMenuDropdown: React.FC<{ item: NonNullable<HeaderType['navItems']>[num
 
   return (
     <>
-      <NavigationMenuTrigger className="bg-transparent font-medium">
+      <NavigationMenuTrigger className="bg-transparent font-medium text-lg">
         {item.type === 'grouplink' && item.link ? (
           <CMSLink {...item.link} appearance="link" className="hover:no-underline" />
         ) : (
-          <span>{item.title}</span>
+          <span className={cn("text-black dark:text-white")}>{item.title}</span>
         )}
       </NavigationMenuTrigger>
 
