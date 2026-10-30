@@ -3,6 +3,7 @@ import { cn } from '@/utilities/ui'
 import Link from 'next/link'
 import React from 'react'
 
+import { buttonVariants } from '@/components/ui/button'
 import type { Page, Post } from '@/payload-types'
 
 type CMSLinkType = {
@@ -56,11 +57,9 @@ export const CMSLink: React.FC<CMSLinkType> = (props) => {
   }
 
   return (
-    <Button asChild className={className} size={size} variant={appearance}>
-      <Link className={cn(className)} href={href || url || ''} {...newTabProps}>
-        {label && label}
-        {children && children}
-      </Link>
-    </Button>
+    <Link className={cn(className, buttonVariants({ variant: 'default' }))} href={href || url || ''} {...newTabProps}>
+      {label && label}
+      {children && children}
+    </Link>
   )
 }
