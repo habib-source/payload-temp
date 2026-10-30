@@ -8,7 +8,7 @@ export const Header: GlobalConfig = {
   access: {
     read: () => true,
   },
-fields: [
+  fields: [
     {
       name: 'navItems',
       type: 'array',
@@ -24,7 +24,8 @@ fields: [
             { label: 'Submenu Group with a Link', value: 'grouplink' },
           ],
           admin: {
-            description: 'Choose whether this item is a direct link or contains dropdown sub-items or both.',
+            description:
+              'Choose whether this item is a direct link or contains dropdown sub-items or both.',
           },
         },
         // Title field for group headers - visible when type === 'group'
@@ -34,14 +35,16 @@ fields: [
           label: 'Group Title',
           required: true,
           admin: {
-            condition: (_, siblingData) => (siblingData?.type === 'group') || (siblingData?.type === 'grouplink'),
+            condition: (_, siblingData) =>
+              siblingData?.type === 'group' || siblingData?.type === 'grouplink',
           },
         },
         // Link field - visible when type === 'link'
         {
           ...link({ appearances: false }),
           admin: {
-            condition: (_, siblingData) => (siblingData?.type === 'link') || (siblingData?.type === 'grouplink'),
+            condition: (_, siblingData) =>
+              siblingData?.type === 'link' || siblingData?.type === 'grouplink',
           },
         },
         // Sub-navigation array - visible when type === 'group'
@@ -50,7 +53,8 @@ fields: [
           type: 'array',
           label: 'Sub Navigation Items',
           admin: {
-            condition: (_, siblingData) => (siblingData?.type === 'group') || (siblingData?.type === 'grouplink'),
+            condition: (_, siblingData) =>
+              siblingData?.type === 'group' || siblingData?.type === 'grouplink',
             initCollapsed: true,
           },
           fields: [
@@ -70,13 +74,15 @@ fields: [
               label: 'Group Title',
               required: true,
               admin: {
-                condition: (_, siblingData) => (siblingData?.type === 'group') || (siblingData?.type === 'grouplink'),
+                condition: (_, siblingData) =>
+                  siblingData?.type === 'group' || siblingData?.type === 'grouplink',
               },
             },
             {
               ...link({ appearances: false }),
               admin: {
-                condition: (_, siblingData) => (siblingData?.type === 'link') || (siblingData?.type === 'grouplink'),
+                condition: (_, siblingData) =>
+                  siblingData?.type === 'link' || siblingData?.type === 'grouplink',
               },
             },
             {
@@ -84,7 +90,8 @@ fields: [
               type: 'array',
               label: 'Sub-Sub Navigation Items (Links Only)',
               admin: {
-                condition: (_, siblingData) => (siblingData?.type === 'group') || (siblingData?.type === 'grouplink'),
+                condition: (_, siblingData) =>
+                  siblingData?.type === 'group' || siblingData?.type === 'grouplink',
                 initCollapsed: true,
               },
               fields: [

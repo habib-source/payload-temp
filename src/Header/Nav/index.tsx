@@ -13,7 +13,7 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu'
-import { cn } from "@/utilities/ui"
+import { cn } from '@/utilities/ui'
 
 export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
   const navItems = data?.navItems || []
@@ -32,7 +32,7 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
                   <CMSLink
                     {...item.link}
                     appearance="link"
-                    className={cn(navigationMenuTriggerStyle(), "text-black dark:text-white")}
+                    className={cn(navigationMenuTriggerStyle(), 'text-black dark:text-white')}
                   />
                 </NavigationMenuItem>
               )
@@ -62,7 +62,9 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
 }
 
 // Separate component to manage active sub-item tab state
-const MegaMenuDropdown: React.FC<{ item: NonNullable<HeaderType['navItems']>[number] }> = ({ item }) => {
+const MegaMenuDropdown: React.FC<{ item: NonNullable<HeaderType['navItems']>[number] }> = ({
+  item,
+}) => {
   const subNavItems = item.subNavItems || []
 
   // Default active tab to the first item that has subSubNavItems or is a group
@@ -76,14 +78,13 @@ const MegaMenuDropdown: React.FC<{ item: NonNullable<HeaderType['navItems']>[num
         {item.type === 'grouplink' && item.link ? (
           <CMSLink {...item.link} appearance="link" className="hover:no-underline" />
         ) : (
-          <span className={cn("text-black dark:text-white")}>{item.title}</span>
+          <span className={cn('text-black dark:text-white')}>{item.title}</span>
         )}
       </NavigationMenuTrigger>
 
       <NavigationMenuContent>
         {/* Container styled like the BDO Mega Menu in your screenshot */}
         <div className="flex w-[700px] min-h-[360px] bg-white shadow-xl rounded-b-md border border-slate-100 overflow-hidden">
-
           {/* LEFT SIDEBAR: Sub Navigation Items */}
           <div className="w-1/3 bg-slate-50 border-r border-slate-200 p-4 space-y-1">
             <h3 className="px-3 py-2 text-xs font-semibold text-slate-400 uppercase tracking-wider">
@@ -100,7 +101,9 @@ const MegaMenuDropdown: React.FC<{ item: NonNullable<HeaderType['navItems']>[num
                     key={index}
                     onMouseEnter={() => setActiveSubIndex(index)}
                     className={`flex items-center justify-between px-3 py-2.5 text-sm font-medium rounded-md cursor-pointer transition-colors ${
-                      isActive ? 'bg-white text-primary shadow-sm' : 'text-slate-700 hover:bg-slate-100'
+                      isActive
+                        ? 'bg-white text-primary shadow-sm'
+                        : 'text-slate-700 hover:bg-slate-100'
                     }`}
                   >
                     <CMSLink {...subItem.link} appearance="link" />
@@ -125,7 +128,9 @@ const MegaMenuDropdown: React.FC<{ item: NonNullable<HeaderType['navItems']>[num
                   ) : (
                     <span>{subItem.title}</span>
                   )}
-                  <ChevronRight className={`w-4 h-4 transition-transform ${isActive ? 'text-primary' : 'text-slate-400'}`} />
+                  <ChevronRight
+                    className={`w-4 h-4 transition-transform ${isActive ? 'text-primary' : 'text-slate-400'}`}
+                  />
                 </div>
               )
             })}
@@ -138,7 +143,11 @@ const MegaMenuDropdown: React.FC<{ item: NonNullable<HeaderType['navItems']>[num
                 {/* Header title for active sub-category */}
                 <h2 className="text-lg font-bold text-slate-900 mb-4 pb-2 border-b border-slate-100">
                   {activeSubItem.type === 'grouplink' && activeSubItem.link ? (
-                    <CMSLink {...activeSubItem.link} appearance="link" className="hover:underline" />
+                    <CMSLink
+                      {...activeSubItem.link}
+                      appearance="link"
+                      className="hover:underline"
+                    />
                   ) : (
                     activeSubItem.title || (activeSubItem.link ? activeSubItem.link.label : '')
                   )}
@@ -167,7 +176,6 @@ const MegaMenuDropdown: React.FC<{ item: NonNullable<HeaderType['navItems']>[num
               </div>
             )}
           </div>
-
         </div>
       </NavigationMenuContent>
     </>

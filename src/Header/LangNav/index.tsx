@@ -1,4 +1,3 @@
-
 import { useTransition } from 'react'
 import { usePathname } from 'next/navigation'
 import { useRouter } from 'next/navigation'
@@ -10,7 +9,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { Button } from '@/components/ui/button'
-import { cn } from "@/utilities/ui"
+import { cn } from '@/utilities/ui'
 
 // Define the locale item shape matching Payload config
 export interface Locale {
@@ -22,10 +21,7 @@ export const LOCALES: Locale[] = process.env.NEXT_PUBLIC_LOCALES
   ? JSON.parse(process.env.NEXT_PUBLIC_LOCALES)
   : [{ label: 'English', code: 'en' }]
 
-
-
 export const LangNav: React.FC<{ initialLocale: string | undefined }> = ({ initialLocale }) => {
-
   const pathname = usePathname()
   const router = useRouter()
   const [isPending, startTransition] = useTransition()
@@ -60,11 +56,11 @@ export const LangNav: React.FC<{ initialLocale: string | undefined }> = ({ initi
           <Button
             variant="ghost"
             size="sm"
-            className={cn("text-black dark:text-white gap-2 px-2 text-sm font-medium")}
+            className={cn('text-black dark:text-white gap-2 px-2 text-sm font-medium')}
           />
         }
       >
-      <Globe className="h-4 w-4" />
+        <Globe className="h-4 w-4" />
         <span className="uppercase">{currentLocale?.code}</span>
         <ChevronDown className="h-3 w-3 opacity-50" />
       </DropdownMenuTrigger>

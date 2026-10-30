@@ -10,8 +10,6 @@ import { LangNav } from './LangNav'
 import { useHeaderTheme } from '@/providers/HeaderTheme'
 import { Header } from '@/payload-types'
 
-
-
 interface HeaderClientProps {
   data: Header
   initialLocale: string | undefined
@@ -22,7 +20,6 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data, initialLocale 
   const [theme, setTheme] = useState<string | null>(null)
   const { headerTheme, setHeaderTheme } = useHeaderTheme()
   const pathname = usePathname()
-
 
   useEffect(() => {
     setHeaderTheme(null)
@@ -42,13 +39,9 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data, initialLocale 
         <Link href="/">
           <Logo className="text-black dark:text-white" />
         </Link>
-
         <div className="flex items-center gap-6">
           <HeaderNav data={data} />
-
-          {/* Language Switcher Dropdown */}
           <LangNav initialLocale={initialLocale} />
-
         </div>
       </div>
     </header>

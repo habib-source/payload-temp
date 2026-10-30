@@ -54,7 +54,6 @@ export default async function Page({ params: paramsPromise }: Args) {
     slug: decodedSlug,
   })
 
-
   if (!page) {
     return <PayloadRedirects url={url} />
   }

@@ -76,7 +76,7 @@ export default buildConfig({
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
   i18n: {
-    supportedLanguages: {en, fr, es, pt},
+    supportedLanguages: { en, fr, es, pt },
   },
   jobs: {
     access: {

@@ -1,14 +1,13 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
-const locales: string[]= (
+const locales: string[] = (
   process.env.NEXT_PUBLIC_LOCALES
     ? (JSON.parse(process.env.NEXT_PUBLIC_LOCALES) as { code: string }[])
     : [{ label: 'English', code: 'en' }]
-).map(locale => locale.code);
+).map((locale) => locale.code)
 
 const defaultLocale = process.env.NEXT_PUBLIC_DEFAULT_LOCALE || 'en'
-
 
 function getLocale(request: NextRequest) {
   // Check if a locale cookie already exists from a previous dropdown choice
@@ -24,7 +23,7 @@ export function proxy(request: NextRequest) {
 
   // Check if pathname already has a supported locale
   const pathnameHasLocale = locales.some(
-    (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
+    (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`,
   )
 
   if (pathnameHasLocale) return

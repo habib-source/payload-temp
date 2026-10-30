@@ -1,7 +1,3 @@
-export default function FrontendRootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function FrontendRootLayout({ children }: { children: React.ReactNode }) {
   return children
 }
