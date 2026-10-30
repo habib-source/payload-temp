@@ -3,7 +3,7 @@ import React from 'react'
 
 import { defaultTheme, themeLocalStorageKey } from '../ThemeSelector/types'
 
-export function InitTheme() {
+export function InitTheme(): React.JSX.Element {
   const themeScript = `
     (function () {
       function getImplicitPreference() {
@@ -40,6 +40,7 @@ export function InitTheme() {
   `
 
   return (
+    /* eslint-disable-next-line @next/next/no-before-interactive-script-outside-document */
     <Script
       id="theme-script"
       dangerouslySetInnerHTML={{ __html: themeScript }}
