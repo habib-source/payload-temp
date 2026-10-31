@@ -19,6 +19,7 @@ function NavigationMenu({
       {...props}
     >
       {children}
+      <NavigationMenuPositioner align={align} />
     </NavigationMenuPrimitive.Root>
   )
 }
