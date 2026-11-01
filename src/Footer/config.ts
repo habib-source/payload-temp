@@ -25,6 +25,11 @@ export const Footer: GlobalConfig = {
         },
       },
     },
+    {
+      name: 'copyRighText',
+      type: 'text',
+      label: 'CopyRight text',
+    },
   ],
   hooks: {
     afterChange: [revalidateFooter],

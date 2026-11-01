@@ -1727,6 +1727,7 @@ export interface Footer {
         id?: string | null;
       }[]
     | null;
+  copyRighText?: string | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -1804,6 +1805,7 @@ export interface FooterSelect<T extends boolean = true> {
             };
         id?: T;
       };
+  copyRighText?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

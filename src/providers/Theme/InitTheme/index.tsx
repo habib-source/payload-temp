@@ -35,6 +35,7 @@ export function InitTheme(): React.JSX.Element {
         }
       }
 
+      window.localStorage.setItem('${themeLocalStorageKey}', themeToSet)
       document.documentElement.setAttribute('data-theme', themeToSet)
     })();
   `
