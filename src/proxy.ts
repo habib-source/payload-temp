@@ -9,10 +9,8 @@ const locales: string[] = (
 
 const defaultLocale = process.env.NEXT_PUBLIC_DEFAULT_LOCALE || 'en'
 
-function getLocale(request: NextRequest) {
+function getLocale(cookieLocale: string) {
   // Check if a locale cookie already exists from a previous dropdown choice
-  const cookieLocale = request.cookies.get('NEXT_LOCALE')?.value
-  if (cookieLocale && locales.includes(cookieLocale)) return cookieLocale
 
   // Otherwise, fallback to browser headers or default
   return defaultLocale
@@ -22,16 +20,26 @@ export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl
 
   // Check if pathname already has a supported locale
-  const pathnameHasLocale = locales.some(
+  const pathnameLocale = locales.find(
     (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`,
   )
 
-  if (pathnameHasLocale) return
+  const cookieLocale = request.cookies.get('NEXT_LOCALE')?.value
 
+  if (pathnameLocale !== undefined && cookieLocale && cookieLocale == pathnameLocale) return
+
+  if (pathnameLocale) {
+    const response = NextResponse.next()
+    response.cookies.set('NEXT_LOCALE', pathnameLocale)
+    return response
+  }
   // Redirect if there is no locale
-  const locale = getLocale(request)
+  const locale = cookieLocale && locales.includes(cookieLocale) ? cookieLocale:defaultLocale
+
   request.nextUrl.pathname = `/${locale}${pathname}`
-  return NextResponse.redirect(request.nextUrl)
+  const response = NextResponse.redirect(request.nextUrl)
+  response.cookies.set('NEXT_LOCALE', locale)
+  return response
 }
 
 export const config = {

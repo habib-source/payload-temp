@@ -8,7 +8,8 @@ export async function Header() {
 
   // Read the cookie safely on the server
   const cookieStore = await cookies()
-  const initialLocale = cookieStore.get('NEXT_LOCALE')?.value
+  const defaultLocale = process.env.NEXT_PUBLIC_DEFAULT_LOCALE || 'en'
+  const initialLocale = cookieStore.get('NEXT_LOCALE')?.value || defaultLocale
 
   return <HeaderClient data={headerData} initialLocale={initialLocale} />
 }
