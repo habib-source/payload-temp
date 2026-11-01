@@ -11,7 +11,6 @@ import {
 import { Button } from '@/components/ui/button'
 import { cn } from '@/utilities/ui'
 
-// Define the locale item shape matching Payload config
 export interface Locale {
   label: string
   code: string
@@ -43,7 +42,6 @@ export const LangNav: React.FC<{ initialLocale: string | undefined }> = ({ initi
       newPath = `/${newLocale}${pathname}`
     }
 
-    // 3. Navigate & refresh server context
     startTransition(() => {
       router.push(newPath)
       router.refresh()

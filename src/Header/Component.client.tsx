@@ -9,6 +9,9 @@ import { HeaderNav } from './Nav'
 import { LangNav } from './LangNav'
 import { useHeaderTheme } from '@/providers/HeaderTheme'
 import { Header } from '@/payload-types'
+import { ThemeSelector } from '@/providers/Theme/ThemeSelector'
+
+import { SearchIcon } from 'lucide-react'
 
 interface HeaderClientProps {
   data: Header
@@ -35,13 +38,19 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data, initialLocale 
 
   return (
     <header className="container relative z-20" {...(theme ? { 'data-theme': theme } : {})}>
-      <div className="py-8 flex items-center justify-between">
+      <div className="py-5 flex items-center justify-between">
         <Link href="/">
           <Logo className="text-black dark:text-white" />
         </Link>
-        <div className="flex items-center gap-6">
-          <HeaderNav data={data} />
+        <HeaderNav data={data} />
+        <div className="gap-4 flex justify-between" >
+          <ThemeSelector />
           <LangNav initialLocale={initialLocale} />
+          {/* Search Icon */}
+          <Link href="/search" className="flex items-center ml-1">
+            <span className="sr-only">Search</span>
+            <SearchIcon className="w-4 h-4 text-primary hover:text-primary/80 transition-colors" />
+          </Link>
         </div>
       </div>
     </header>
