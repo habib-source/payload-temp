@@ -10,29 +10,27 @@ export async function Footer() {
   const navItems = footerData?.navItems || []
 
   return (
-    <footer className="mt-auto border-t border-border bg-black dark:bg-card text-white">
-      <div className="container py-8 gap-8 flex flex-col md:flex-row md:justify-between items-center">
-
+    <footer className="mt-auto border-t border-border bg-black text-white dark:bg-card">
+      <div className="container flex flex-col items-center gap-8 py-8 md:flex-row md:justify-between">
         {/* Logo and Copyright grouped next to each other */}
-        <div className="flex flex-col sm:flex-row items-center gap-4">
+        <div className="flex flex-col items-center gap-4 sm:flex-row">
           <Link className="flex items-center" href="/">
-            <Logo />
+            <Logo className="text-white/90" />
           </Link>
-          {footerData.copyRighText && footerData.copyRighText != "" && (
-            <p className="text-sm text-neutral-400 items-center">
+          {footerData.copyRighText && footerData.copyRighText != '' && (
+            <p className="items-center text-sm text-neutral-400">
               &copy; {footerData.copyRighText}
             </p>
           )}
         </div>
 
-        <div className="flex flex-col-reverse items-start md:flex-row gap-4 md:items-center">
-          <nav className="flex flex-col md:flex-row gap-4">
+        <div className="flex flex-col-reverse items-start gap-4 md:flex-row md:items-center">
+          <nav className="flex flex-col gap-4 md:flex-row">
             {navItems.map(({ link }, i) => {
               return <CMSLink className="text-white" key={i} {...link} />
             })}
           </nav>
         </div>
-
       </div>
     </footer>
   )

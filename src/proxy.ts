@@ -34,7 +34,7 @@ export function proxy(request: NextRequest) {
     return response
   }
   // Redirect if there is no locale
-  const locale = cookieLocale && locales.includes(cookieLocale) ? cookieLocale:defaultLocale
+  const locale = cookieLocale && locales.includes(cookieLocale) ? cookieLocale : defaultLocale
 
   request.nextUrl.pathname = `/${locale}${pathname}`
   const response = NextResponse.redirect(request.nextUrl)

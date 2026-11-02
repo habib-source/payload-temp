@@ -13,9 +13,7 @@ export const ThemeSelector: React.FC = () => {
   const [theme, setThemeState] = useState<Theme>(defaultTheme)
 
   useEffect(() => {
-    const preference = window.localStorage.getItem(
-      themeLocalStorageKey,
-    ) as Theme | null
+    const preference = window.localStorage.getItem(themeLocalStorageKey) as Theme | null
     setThemeState(preference ?? defaultTheme)
   }, [])
 

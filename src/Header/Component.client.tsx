@@ -37,19 +37,19 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data, initialLocale 
   // Handle switching language for Payload localizer
 
   return (
-    <header className="container relative z-20" {...(theme ? { 'data-theme': theme } : {})}>
-      <div className="py-5 flex items-center justify-between">
+    <header className="relative z-20 container" {...(theme ? { 'data-theme': theme } : {})}>
+      <div className="flex items-center justify-between py-5">
         <Link href="/">
-          <Logo className="text-black dark:text-white" />
+          <Logo className="text-black dark:text-white/90" />
         </Link>
         <HeaderNav data={data} />
-        <div className="gap-4 flex justify-between" >
+        <div className="flex justify-between gap-4">
           <ThemeSelector />
           <LangNav initialLocale={initialLocale} />
           {/* Search Icon */}
-          <Link href="/search" className="flex items-center ml-1">
+          <Link href="/search" className="ml-1 flex items-center">
             <span className="sr-only">Search</span>
-            <SearchIcon className="w-4 h-4 text-primary hover:text-primary/80 transition-colors" />
+            <SearchIcon className="h-4 w-4 text-primary transition-colors hover:text-primary/80" />
           </Link>
         </div>
       </div>

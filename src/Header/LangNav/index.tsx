@@ -54,7 +54,7 @@ export const LangNav: React.FC<{ initialLocale: string | undefined }> = ({ initi
           <Button
             variant="ghost"
             size="sm"
-            className={cn('text-black dark:text-white gap-2 px-2 text-sm font-medium')}
+            className={cn('gap-2 px-2 text-sm font-medium text-black dark:text-white')}
           />
         }
       >
@@ -68,7 +68,7 @@ export const LangNav: React.FC<{ initialLocale: string | undefined }> = ({ initi
             key={locale.code}
             disabled={locale.code === currentLocaleCode || isPending}
             onClick={() => handleLocaleChange(locale.code)}
-            className="cursor-pointer flex items-center justify-between gap-4"
+            className="flex cursor-pointer items-center justify-between gap-4"
           >
             <span>{locale.label}</span>
             <span className="text-xs text-muted-foreground uppercase">{locale.code}</span>

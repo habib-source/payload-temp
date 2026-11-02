@@ -10,7 +10,7 @@ export const Logo = (props: Props) => {
   return (
     /* eslint-disable @next/next/no-img-element */
     <svg
-      className={clsx('max-w-[9.375rem] w-full h-[34px]', className)}
+      className={clsx('h-[34px] w-full max-w-[9.375rem]', className)}
       xmlns="http://www.w3.org/2000/svg"
       viewBox="100 120 170 230"
       width="134"
