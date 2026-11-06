@@ -51,11 +51,7 @@ export const LangNav: React.FC<{ initialLocale: string | undefined }> = ({ initi
     <DropdownMenu>
       <DropdownMenuTrigger
         render={
-          <Button
-            variant="ghost"
-            size="sm"
-            className={cn('gap-2 px-2 text-sm font-medium text-black dark:text-white')}
-          />
+          <Button variant="ghost" size="sm" className={cn('gap-2 px-2 text-sm font-medium')} />
         }
       >
         <Globe className="h-4 w-4" />
@@ -71,7 +67,7 @@ export const LangNav: React.FC<{ initialLocale: string | undefined }> = ({ initi
             className="flex cursor-pointer items-center justify-between gap-4"
           >
             <span>{locale.label}</span>
-            <span className="text-xs text-muted-foreground uppercase">{locale.code}</span>
+            <span className="text-xs uppercase">{locale.code}</span>
           </DropdownMenuItem>
         ))}
       </DropdownMenuContent>
