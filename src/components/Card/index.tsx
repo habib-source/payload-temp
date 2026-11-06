@@ -39,7 +39,15 @@ export const Card: React.FC<{
     >
       <div className="relative w-full">
         {!metaImage && <div className="">No image</div>}
-        {metaImage && typeof metaImage !== 'string' && <Media resource={metaImage} size="33vw" />}
+        {metaImage && typeof metaImage !== 'string' && (
+          <Media
+            resource={metaImage}
+            pictureClassName="relative block w-full h-56"
+            imgClassName="object-cover object-center"
+            fill={true}
+            size="33vw"
+          />
+        )}
       </div>
       <div className="p-4">
         {showCategories && hasCategories && (
@@ -66,7 +74,7 @@ export const Card: React.FC<{
         )}
         {titleToUse && (
           <div className="prose">
-            <h3>
+            <h3 className="text-black dark:text-white">
               <Link className="not-prose" href={href} ref={link.ref}>
                 {titleToUse}
               </Link>

@@ -10,15 +10,15 @@ export async function Footer() {
   const navItems = footerData?.navItems || []
 
   return (
-    <footer className="mt-auto border-t border-border bg-black text-white dark:bg-card">
+    <footer className="mt-auto bg-card text-black dark:text-white">
       <div className="container flex flex-col items-center gap-8 py-8 md:flex-row md:justify-between">
         {/* Logo and Copyright grouped next to each other */}
         <div className="flex flex-col items-center gap-4 sm:flex-row">
           <Link className="flex items-center" href="/">
-            <Logo className="text-white/90" />
+            <Logo className="text-black dark:text-white/90" />
           </Link>
           {footerData.copyRighText && footerData.copyRighText != '' && (
-            <p className="items-center text-sm text-neutral-400">
+            <p className="items-center text-sm text-black dark:text-neutral-400">
               &copy; {footerData.copyRighText}
             </p>
           )}
@@ -27,7 +27,7 @@ export async function Footer() {
         <div className="flex flex-col-reverse items-start gap-4 md:flex-row md:items-center">
           <nav className="flex flex-col gap-4 md:flex-row">
             {navItems.map(({ link }, i) => {
-              return <CMSLink className="text-white" key={i} {...link} />
+              return <CMSLink key={i} {...link} />
             })}
           </nav>
         </div>

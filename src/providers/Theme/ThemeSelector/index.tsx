@@ -31,7 +31,7 @@ export const ThemeSelector: React.FC = () => {
       size="icon"
       onClick={toggleTheme}
       aria-label={`Switch to ${isDark ? 'light' : 'dark'} theme`}
-      className="bg-transparent text-black dark:text-white [&_svg]:!size-4"
+      className="bg-transparent [&_svg]:!size-4"
     >
       {isDark ? (
         <Sun className="h-4 w-4 duration-200" />
